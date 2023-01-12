@@ -1,16 +1,18 @@
 class Solution:
     def maxIceCream(self, costs: List[int], coins: int) -> int:
+        
         costs.sort()
 
-        # use binary search to find the first ice cream bar the boy can't afford
-        left = 0
-        right = len(costs) - 1
-        while left <= right:
-            mid = (left + right) // 2
-            if costs[mid] > coins:
-                right = mid - 1
-            else:
-                left = mid + 1
+        # keep track of the number of ice cream bars bought
+        count = 0
 
-        # return the count of ice cream bars the boy can afford
-        return len(costs) - left
+        # iterate through the costs and add up the number of ice cream bars the boy can buy
+        for cost in costs:
+            if cost <= coins:
+                count += 1
+                coins -= cost
+            else:
+                return count
+
+        # return the final count
+        return count
