@@ -3,8 +3,7 @@ class Solution:
         
         
         def traverse(s):
-            if len(s) > 0:
-                visitedChars.add(s)
+            visitedChars.add(s)
             
             for i in range(n):
                 if i not in visited:
@@ -18,4 +17,4 @@ class Solution:
         
         traverse("")
         
-        return len(visitedChars)
+        return len(visitedChars) - 1
