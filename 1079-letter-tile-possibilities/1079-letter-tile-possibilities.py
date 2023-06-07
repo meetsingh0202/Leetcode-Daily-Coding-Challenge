@@ -3,18 +3,27 @@ class Solution:
         
         
         def traverse(s):
-            visitedChars.add(s)
+            nonlocal count
             
-            for i in range(n):
-                if i not in visited:
-                    visited.add(i)
-                    traverse(s + tiles[i])
-                    visited.remove(i)
+            if sum(s) == 0:
+                count += 1
+                return
+            
+            count += 1
         
-        visitedChars = set()
-        visited = set()
+            for index in range(len(s)):
+                if s[index]:
+                    s[index] -= 1
+                    traverse(s)
+                    s[index] += 1
+        
         n = len(tiles)
+        HashMap = dict()
         
-        traverse("")
+        for i in tiles:
+            HashMap[i] = 1 + HashMap.get(i, 0)
+            
+        count = 0
+        traverse(list(HashMap.values()))
         
-        return len(visitedChars) - 1
+        return count - 1
