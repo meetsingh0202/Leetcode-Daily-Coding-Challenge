@@ -26,7 +26,7 @@ class Solution:
             
         
         low = 1
-        high = sys.maxsize
+        high = row * col
         ans = 1
         
         while low <= high:
