@@ -1,15 +1,22 @@
 class Solution:
     def distributeCookies(self, cookies: List[int], k: int) -> int:
         
+        children = (0, ) * k
+        
         @cache
-        def dfs(i, dist):
-            if i == len(cookies):
-                return max(dist)
-            new_dist = list(dist)
-            ans = float("inf")
-            for j in range(k):
-                new_dist[j] += cookies[i]
-                ans = min(ans, dfs(i+1, tuple(sorted(new_dist))))
-                new_dist[j] -= cookies[i]
+        def traverse(currIndex, children):
+            if currIndex == len(cookies):
+                return max(children)
+            
+            currCookies = cookies[currIndex]
+            ans = float('inf')
+            tempChildren = list(children)
+            
+            for i in range(k):
+                tempChildren[i] += currCookies
+                ans = min(ans, traverse(currIndex + 1, tuple(sorted(tempChildren))))
+                tempChildren[i] -= currCookies
+                
             return ans
-        return dfs(0, (0, )*k)
+        
+        return traverse(0, children)
