@@ -16,11 +16,11 @@ class Solution:
                     if isSafe[i] == True:
                         continue
                     count[currNode] += 1
+                    break
                         
             flag = True if count[currNode] == 0 else False
             isSafe[currNode] = flag
             
-            # print(currNode, isSafe[currNode], count[currNode])
             
             return isSafe[currNode]
         
