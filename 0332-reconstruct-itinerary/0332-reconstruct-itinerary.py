@@ -1,21 +1,15 @@
-from sortedcontainers import *
-
 class Solution:
     def findItinerary(self, tickets: List[List[str]]) -> List[str]:
         
-        flights = dict()
+        flights = defaultdict(list)
+        
+        tickets.sort()
         
         for i in tickets:
             x, y = i
-            
-            if x in flights:
-                flights[x].add(y)
-            else:
-                flights[x] = SortedList()
-                flights[x].add(y)
+            flights[x].append(y)
                 
         res = ["JFK"]
-        print(flights)
         
         def traverse(curr):
             if len(res) == len(tickets) + 1:
@@ -24,14 +18,14 @@ class Solution:
             if curr not in flights:
                 return False
             
-            for k in flights[curr]:
-                flights[curr].remove(k)
-                res.append(k)
+            for index, val in enumerate(flights[curr]):
+                flights[curr].pop(index)
+                res.append(val)
                 
-                if traverse(k):
+                if traverse(val):
                     return True
                 else:
-                    flights[curr].add(k)
+                    flights[curr].insert(index, val)
                     res.pop()
             
             return False
