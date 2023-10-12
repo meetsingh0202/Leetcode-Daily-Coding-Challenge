@@ -9,8 +9,8 @@
 class Solution:
 
     def getVal(self, index, mountain_arr):
-        # if index in self.memo:
-        #     return self.memo[index]
+        if index in self.memo:
+            return self.memo[index]
         self.memo[index] = mountain_arr.get(index)
         return self.memo[index]
 
