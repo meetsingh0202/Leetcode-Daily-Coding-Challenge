@@ -8,6 +8,7 @@
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
         
+        @cache
         def traverse(root):
             if root == None or root == p or root == q:
                 return root
