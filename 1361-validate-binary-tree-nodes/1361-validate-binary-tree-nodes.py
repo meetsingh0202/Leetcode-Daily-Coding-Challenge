@@ -21,27 +21,17 @@ class Solution:
         def findParent(currNode):
             visited.add(currNode)
             
-            if currNode == -1:
-                return
-            
             if currNode in left:
                 parent[left[currNode]].append(currNode)
                 if left[currNode] not in visited: 
                     findParent(left[currNode])
-                # else:
-                #     self.flag = True
             
             if currNode in right:
                 parent[right[currNode]].append(currNode)
-                
                 if right[currNode] not in visited:
                     findParent(right[currNode])
-                # else:
-                #     self.flag = True
         
         parent = defaultdict(list)
-        self.flag = False
-        
         left = dict()
         right = dict()
         visited = set()
@@ -60,13 +50,7 @@ class Solution:
             return False
         
         findParent(rootNodes[0])
-        
-        if self.flag == True:
-            return False
-        
         rootNode = False
-        
-        # print(parent)
         
         for i in range(n):
             
@@ -78,8 +62,6 @@ class Solution:
                     return False
 
             val = parent.get(i, [])
-            
-            # print(i, val)
             
             if len(val) > 1:
                 return False
