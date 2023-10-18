@@ -14,9 +14,6 @@ class Solution:
                 
                 y = temp - currNum
                 
-                if y > currNum:
-                    break
-                
                 count += HashMap.get(y, 0)
                 count = count % MOD
                 
