@@ -4,7 +4,9 @@ class Solution:
         
         adjacencyList = defaultdict(list)
         
-        isReachable = [[False for i in range(numCourses)] for j in range(numCourses)]
+        # isReachable = [[False for i in range(numCourses)] for j in range(numCourses)]
+        isReachable = defaultdict(set)
+        
         
         for i in prerequisites:
             x, y = i
@@ -21,7 +23,7 @@ class Solution:
                     currNode = queue.popleft()
                     visited.add(currNode)
                     
-                    isReachable[i][currNode] = True
+                    isReachable[i].add(currNode)
                     
                     for k in adjacencyList[currNode]:
                         if k not in visited:
@@ -29,5 +31,9 @@ class Solution:
         
         res = []
         for x, y in queries:
-            res.append(isReachable[x][y])
+            if y in isReachable[x]:
+                res.append(True)
+            else:
+                res.append(False)
+            # res.append(isReachable[x][y])
         return res
