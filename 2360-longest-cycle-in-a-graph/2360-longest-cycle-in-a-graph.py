@@ -5,17 +5,15 @@ class Solution:
             
             if currNode not in visited:
                 if currNode in HashMap:
-                    self.maxLen = max(self.maxLen, len(stack) - HashMap[currNode])
+                    self.maxLen = max(self.maxLen, len(HashMap) - HashMap[currNode])
+                    
                 elif edges[currNode] != -1:
-                    HashMap[currNode] = len(stack)
-                    stack.append(currNode)
+                    HashMap[currNode] = len(HashMap)
                     traverse(edges[currNode])
-                    stack.pop()
                     HashMap.pop(currNode)
                 visited.add(currNode)       
 
         self.maxLen = float('-inf')
-        stack = []
         HashMap = dict()
         visited = set()
         
