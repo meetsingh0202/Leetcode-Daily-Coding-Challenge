@@ -31,21 +31,13 @@ class Solution:
                 
             return tempVal
         
-#         1 0 1
-#         0 1 0 
-        
-#         1 0 1
-#         1 1 1
         
         arr = [pref[0]]
         currXor = pref[0]
         
         for i in pref[1:]:
             tempAns = convert(currXor, i)
-            # print(i, tempAns, currXor)
             currXor = currXor ^ tempAns
-            # print(i, tempAns, currXor)
-            # break
             arr.append(tempAns)
         
         return arr
