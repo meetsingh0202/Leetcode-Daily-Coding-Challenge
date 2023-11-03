@@ -28,7 +28,7 @@ class Solution:
         def setKthBit(n, k):
             return ((1 << k) | n)
         
-        # @cache
+        @cache
         def traverse(currIndex, visited):
             if currIndex > n:
                 return 1
