@@ -8,15 +8,14 @@ class Solution:
         
         MOD = 10**9 + 7
         HashMap = dict()
-        count = 0 
+        count = 0
         for i in range(len(nums)):
             temp = nums[i] - reverse(nums[i])
-            nums[i] = temp
-            if nums[i] in HashMap:
-                count += HashMap[nums[i]]
-                HashMap[nums[i]]+=1
+            if temp in HashMap:
+                count += HashMap[temp]
+                HashMap[temp]+=1
             else:
-                HashMap[nums[i]] = 1
+                HashMap[temp] = 1
                 
         return count % MOD
     
