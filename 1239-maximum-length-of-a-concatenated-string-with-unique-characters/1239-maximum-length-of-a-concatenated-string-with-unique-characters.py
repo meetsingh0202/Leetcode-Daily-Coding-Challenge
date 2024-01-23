@@ -1,13 +1,33 @@
 class Solution:
     def maxLength(self, arr: List[str]) -> int:
-        self.res=0
-        def backtrack(start,arr,word):
-            if len(word)==len(set(word)):
-                self.res=max(self.res,len(word))
-            else:
-                return
-            for i in range(start,len(arr)):
-                backtrack(i+1,arr,word+arr[i])
         
-        backtrack(0,arr,"")
-        return self.res
+        @cache
+        def traverse(currIndex, currChars):
+            
+            if currIndex == len(arr):
+                return 0
+            
+            tempString = arr[currIndex]
+            
+            take, notTake = float('-inf'), float('-inf')
+            flag = True
+            tempMask = currChars
+            
+            for char in tempString:
+                tempIndex = ord(char) - ord('a')
+                
+                if tempMask & (1 << tempIndex):
+                    flag = False
+                    break
+                
+                tempMask = tempMask | (1 << tempIndex)
+            
+            if flag:
+                take = len(tempString) + traverse(currIndex + 1, tempMask)
+            
+            notTake = traverse(currIndex + 1, currChars)
+            
+            return max(take, notTake)
+        
+        return traverse(0, 0)
+    
