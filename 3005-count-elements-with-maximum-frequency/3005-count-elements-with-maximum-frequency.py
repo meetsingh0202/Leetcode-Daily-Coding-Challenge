@@ -7,10 +7,8 @@ class Solution:
         
         for i in nums:
             HashMap[i] = 1 + HashMap.get(i, 0)
-        
-        for key, val in HashMap.items():
-            MaxFreq = max(MaxFreq, val)
-        
+            MaxFreq = max(MaxFreq, HashMap.get(i, 0))
+
         for key, val in HashMap.items():
             if val == MaxFreq:
                 total += val
