@@ -11,7 +11,9 @@ class Solution:
                 curr |= nums[j]
                 count += 1
                 
-                if curr >= k and count < res:
-                    res = count
-        
+                if curr >= k:
+                    if count < res:
+                        res = count
+                    break
+                    
         return res if res != float('inf') else -1
